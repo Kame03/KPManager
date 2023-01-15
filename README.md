@@ -3,7 +3,7 @@
 
 **A Bukkit plugin for Minecraft servers that welcomes players with a personalized message, and also broadcasts their country of origin to the whole server using IP geolocation.**
 
-## Features
+### Features:
 
     Personalized welcome message for each player upon join
     Broadcast of player's country of origin to the entire server
@@ -30,4 +30,5 @@ Credits
 This plugin is made by Viktor Milivojević and is open-source.
 
 Note: If you are using this plugin for commercial purposes, please credit me.
+
 
