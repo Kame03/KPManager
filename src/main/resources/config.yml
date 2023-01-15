@@ -1,8 +1,0 @@
-language:
-  prefix: '&2[KPManager]'
-  spawn-set: '&aSpawn set!'
-  error: '&cThere was an error, please do: /setjoinspawn'
-  no-permission: '&cNo Permission'
-  not-a-player: '&cOnly Players can run these commands!'
-  spawn-not-set: '&bThe spawn point is not set, to set spawn do: /setjoinspawn'
-  teleporting: '&bTeleporting...'

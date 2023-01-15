@@ -1,4 +1,4 @@
-package KPManager;
+package in.rs.milivojevic.KPManager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

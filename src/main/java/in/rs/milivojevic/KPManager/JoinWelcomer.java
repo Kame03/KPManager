@@ -1,4 +1,4 @@
-package KPManager;
+package in.rs.milivojevic.KPManager;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -41,7 +41,7 @@ public final class JoinWelcomer implements Listener {
             assert response.body() != null;
             String body = response.body().string();
             String country = parseCountry(body);
-            if (country != null && !country.isEmpty()) {
+            if (!country.isEmpty()) {
                 Bukkit.broadcastMessage(messageEveryone.replace("{playerName}", player.getName()).replace("{country}", country));
             }
         } catch (IOException e) {
