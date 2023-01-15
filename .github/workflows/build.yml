@@ -9,10 +9,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up JDK
+      - name: Setup Java
         uses: actions/setup-java@v2
         with:
           java-version: 17
+          java-package: jdk
+          architecture: x64
+          check-latest: false
+          distribution: openjdk
+          server-id: github
+          server-username: GITHUB_ACTOR
+          server-password: GITHUB_TOKEN
+          overwrite-settings: true
 
       - name: Build with Maven
         run: mvn clean install
