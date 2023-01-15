@@ -9,8 +9,8 @@ public final class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        getLogger().info(ChatColor.translateAlternateColorCodes('&', "&bStarting!"));
-        getLogger().info(ChatColor.translateAlternateColorCodes('&', "&bThis plugin is made by Kamey_"));
+        getLogger().info("Starting!");
+        getLogger().warning("This plugin is made by Kamey_");
         this.saveDefaultConfig();
         JoinWelcomer joinWelcomer = new JoinWelcomer(this);
         getServer().getPluginManager().registerEvents(joinWelcomer, this);
