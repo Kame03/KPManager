@@ -1,9 +1,9 @@
 # KPManager
 
 
-**A Bukkit plugin for Minecraft servers that welcomes players with a personalized message, and also broadcasts their country of origin to the whole server using IP geolocation.
+**A Bukkit plugin for Minecraft servers that welcomes players with a personalized message, and also broadcasts their country of origin to the whole server using IP geolocation.**
 
-## Features**
+## Features
 
     Personalized welcome message for each player upon join
     Broadcast of player's country of origin to the entire server
