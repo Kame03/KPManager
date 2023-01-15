@@ -21,6 +21,7 @@ jobs:
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
           overwrite-settings: true
+
       - name: Build with Maven
         run: mvn clean install
 
@@ -34,5 +35,7 @@ jobs:
         with:
           tag_name: v1.5
           release_name: KManager 1.5
-          draft: true
+          draft: false
           prerelease: true
+          body: ${{github.event.head_commit.message}}
+          assets: target/*.jar
