@@ -27,10 +27,12 @@ public final class JoinWelcomer implements Listener {
         return elements.text();
     }
 
+
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         String playerIP = Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress();
+        event.setJoinMessage(null);
 
         Request requestIp;
         requestIp = new Request.Builder().url("https://ipapi.co/" + playerIP + "/xml/").build();
