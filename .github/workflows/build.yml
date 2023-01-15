@@ -16,7 +16,7 @@ jobs:
           java-package: jdk
           architecture: x64
           check-latest: false
-          distribution: openjdk
+          distribution: amazon-corretto@17
           server-id: github
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
