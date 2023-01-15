@@ -12,11 +12,11 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
-          java-version: 17
+          java-version: '17'
           java-package: jdk
           architecture: x64
           check-latest: false
-          distribution: amazon-corretto@17
+          distribution: 'amazon-corretto'
           server-id: github
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
