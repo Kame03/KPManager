@@ -1,0 +1,6 @@
+name: KPManager
+api-version: 1.19
+version: 1.3
+main: in.rs.milivojevic.welcomerbykamey.Main
+author: Kamey_
+description: This plugin displays a welcome message to players when they join the server, including their name.
