@@ -1,0 +1,3 @@
+messagePlayer: '&aWelcome &b{playerName} &ato my server! &bEnjoy your stay!'
+messageEveryone: '&a{playerName} joined from &b{country}.'
+messageError: '&cWelcome, &6{playerName}, &cto the server! It seems you may have joined from localhost or there was an error with the API ip-api.com. Please check your internet connection and firewall settings.'

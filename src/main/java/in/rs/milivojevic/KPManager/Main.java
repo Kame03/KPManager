@@ -11,8 +11,12 @@ public final class Main extends JavaPlugin implements Listener {
     public void onEnable() {
         getLogger().info(ChatColor.translateAlternateColorCodes('&', "&bStarting!"));
         getLogger().info(ChatColor.translateAlternateColorCodes('&', "&bThis plugin is made by Kamey_"));
-        Bukkit.getServer().getPluginManager().registerEvents(new JoinWelcomer(), this);
+        this.saveDefaultConfig();
+        JoinWelcomer joinWelcomer = new JoinWelcomer(this);
+        getServer().getPluginManager().registerEvents(joinWelcomer, this);
     }
+
+
 
 
     @Override
