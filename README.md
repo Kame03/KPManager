@@ -32,4 +32,4 @@ This plugin is made by Viktor Milivojević and is open-source.
 Note: If you are using this plugin for commercial purposes, please credit me.
 
 ### Contributors:
-- [Ruki X Music](https://www.youtube.com/@RukiXMusic): Helped me with icon color pattenr and outlines!
+- [Ruki X Music](https://www.youtube.com/@RukiXMusic): Helped me with icon color pattern and outlines!
