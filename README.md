@@ -1,4 +1,4 @@
-# KPManager
+# KPManager <img src="https://github.com/Kame03/KPManager/blob/master/assets/icon/icon.png" alt="icon" width="200"/>
 
 
 **A Spigot plugin for Minecraft servers that welcomes players with a personalized message, and also broadcasts their country of origin to the whole server using IP geolocation.**
