@@ -13,7 +13,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-
 import java.io.IOException;
 import java.util.Objects;
 
@@ -27,9 +26,18 @@ public final class JoinWelcomer implements Listener {
     public JoinWelcomer(Main plugin) {
         this.plugin = plugin;
         config = plugin.getConfig();
-        messagePlayer = config.getString("messagePlayer").replace('&', ChatColor.COLOR_CHAR);
-        messageEveryone = config.getString("messageEveryone").replace('&', ChatColor.COLOR_CHAR);
-        messageError = config.getString("messageError").replace('&', ChatColor.COLOR_CHAR);
+
+        if (config.getString("tabHeader") !=null) {
+            messagePlayer = config.getString("messagePlayer").replace('&', ChatColor.COLOR_CHAR);
+        }
+
+        if (config.getString("tabHeader") !=null) {
+            messageEveryone = config.getString("messageEveryone").replace('&', ChatColor.COLOR_CHAR);
+        }
+
+        if (config.getString("tabHeader") !=null) {
+            messageError = config.getString("messageError").replace('&', ChatColor.COLOR_CHAR);
+        }
     }
 
 
