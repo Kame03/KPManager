@@ -24,7 +24,7 @@
 If you have any questions or issues with the plugin, please contact me on GitHub or through my website.
 
 ### License:
-KPManager is licensed under the MIT License.
+KPManager is licensed under the GPLv3 License.
 Credits
 
 This plugin is made by Viktor Milivojević and is open-source.
