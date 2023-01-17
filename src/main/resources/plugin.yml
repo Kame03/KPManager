@@ -1,7 +1,11 @@
 name: KPManager
 api-version: 1.19
-version: 1.5
+version: 1.7
 main: in.rs.milivojevic.KPManager.Main
 author: Kamey_
-license: MIT
-description: This plugin displays a welcome message to players when they join the server, including their name.
+license: GPLv3
+description: Welcome players with personalized messages, show country of origin, manage tab list and monitor ping.
+permissions:
+  KPManager.update:
+    description: Allows player to see update notifications
+    default: op

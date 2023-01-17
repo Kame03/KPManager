@@ -15,13 +15,14 @@ import in.rs.milivojevic.KPManager.utils.PingUtil;
 
 public class TabCustomizer implements Listener {
     private final Scoreboard scoreboard;
-    private FileConfiguration config;
+    private final FileConfiguration config;
     private String tabHeader;
     private String tabFooter;
     private String pingInt;
+    private String valueping;
     private final Main plugin;
-    private boolean hasPingInt;
-    private boolean hasTabHeaderFooter;
+    private final boolean hasPingInt;
+    private final boolean hasTabHeaderFooter;
     public TabCustomizer(Scoreboard scoreboard, Main plugin) {
         this.scoreboard = scoreboard;
         this.plugin = plugin;
@@ -55,20 +56,28 @@ public class TabCustomizer implements Listener {
             team = scoreboard.registerNewTeam(playerName);
         }
         team.addEntry(playerName);
+        BukkitRunnable task0 = new BukkitRunnable() {
 
-        BukkitRunnable task = new BukkitRunnable() {
             @Override
             public void run() {
-                int ping = PingUtil.getPing(player);
+                    valueping = "" + PingUtil.getPing(player);
+            }
+        };
+        task0.runTaskTimer(plugin, 0, 20);
+
+        BukkitRunnable task = new BukkitRunnable() {
+
+            @Override
+            public void run() {
                 if (hasPingInt) {
-                    player.setPlayerListName(playerName + ChatColor.translateAlternateColorCodes('&', pingInt.replace("{ping}", String.valueOf(ping))));
+                    player.setPlayerListName(playerName + ChatColor.translateAlternateColorCodes('&', pingInt.replace("{ping}", valueping)));
                 }
                 if (hasTabHeaderFooter) {
                     player.setPlayerListHeaderFooter(ChatColor.translateAlternateColorCodes('&', tabHeader.replace("{playerName}", player.getName())), ChatColor.translateAlternateColorCodes('&', tabFooter.replace("{playerName}", player.getName())));
                 }
             }
         };
-        task.runTaskTimer(plugin, 0, 20);
+        task.runTaskTimer(plugin, 0, 40);
     }
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {

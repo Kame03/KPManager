@@ -16,9 +16,9 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.Objects;
 
-public final class JoinWelcomer implements Listener {
+public final class JoinWelcomer implements Listener  {
     private final OkHttpClient client = new OkHttpClient();
-    private FileConfiguration config;
+    private final FileConfiguration config;
     private String messagePlayer;
     private String messageEveryone;
     private String messageError;
@@ -40,9 +40,6 @@ public final class JoinWelcomer implements Listener {
         }
     }
 
-
-
-
     private String parseCountry(String xml) {
         Document doc = Jsoup.parse(xml, "", org.jsoup.parser.Parser.xmlParser());
         Elements elements = doc.select("country");
@@ -50,11 +47,10 @@ public final class JoinWelcomer implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
+    public void onPlayerJoin (PlayerJoinEvent event) {
         Player player = event.getPlayer();
         String playerIP = Objects.requireNonNull(player.getAddress()).getAddress().getHostAddress();
         event.setJoinMessage(null);
-
         Request requestIp;
         requestIp = new Request.Builder().url("http://ip-api.com/xml/" + playerIP).build();
 
