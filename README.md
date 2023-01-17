@@ -2,7 +2,7 @@
 <img src="https://github.com/Kame03/KPManager/blob/master/assets/icon/icon.png" alt="icon" width="150"/>
 
 
-** A Spigot plugin for Minecraft servers that welcomes players with a personalized message, and also broadcasts their country of origin to the whole server using IP geolocation. Additionally, it manages the tab list in Minecraft, allowing for custom text in the header and footer and adding ping monitoring after player's usernames.**
+**A Spigot plugin for Minecraft servers that welcomes players with a personalized message, and also broadcasts their country of origin to the whole server using IP geolocation. Additionally, it manages the tab list in Minecraft, allowing for custom text in the header and footer and adding ping monitoring after player's usernames.**
 
 ### Features:
 
