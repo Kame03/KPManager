@@ -1,8 +1,26 @@
+# Welcome message for players when they join the server
 messagePlayer: '&2[KPManager] &aWelcome &b{playerName} &ato my server! &bEnjoy your stay!'
+
+# Message broadcasted to the server when a player joins
 messageEveryone: '&2[KPManager] &a{playerName} joined from &b{country}.'
+
+# Error message displayed if there is an issue with the IP API or the player joins from localhost
 messageError: '&2[KPManager] &cWelcome, &6{playerName}, &cto the server! It seems you may have joined from localhost or there was an error with the API ip-api.com. Please check your internet connection and firewall settings.'
+
+# Tablist header message for players when they join
 tabHeader: '&6Welcome {playerName} to our wonderful server! &6'
+
+# Tablist footer message for players when they join
 tabFooter: '&6Make the most of your stay, {playerName} &6'
+
+# Ping message format for tablist
 pingInt: '&7[{ping}]'
-updateAvailable: 'There is a new update available.'
-updateAvailablePlayer: '&2[KPManager] &cThere is a new update available, please update the plugin.'
+
+# Update available message displayed in console
+updateAvailable: 'There is a new update available version {version}.'
+
+# Update available message displayed to player
+updateAvailablePlayer: '&2[KPManager] &cThere is a new update available version {version}, please update the plugin.'
+
+# Spigot resource ID for the plugin
+resource: '107412'

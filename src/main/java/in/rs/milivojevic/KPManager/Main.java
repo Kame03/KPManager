@@ -11,6 +11,9 @@ import org.bukkit.scoreboard.Scoreboard;
 
 public final class Main extends JavaPlugin implements Listener {
     private boolean updateAvailable;
+    private String messagePlayer;
+    private String updateVersion;
+    private int resource;
     @Override
     public void onEnable() {
         getLogger().info("Starting!");
@@ -25,32 +28,49 @@ public final class Main extends JavaPlugin implements Listener {
         TabCustomizer tabCustomizer = new TabCustomizer(scoreboard,this);
         getServer().getPluginManager().registerEvents(tabCustomizer, this);
         getServer().getPluginManager().registerEvents(this, this);
-
-        new UpdateChecker(this, 107412).getVersion(version -> {
-            if (!this.getDescription().getVersion().equals(version)) {
-                updateAvailable = true;
-            } else {
-                updateAvailable = false;
-            }
-            if(updateAvailable) {
-                if (getConfig().getString("updateAvailable") !=null) {
-                    getLogger().info(getConfig().getString("updateAvailable"));
+        if (getConfig().getString("resource") != null) {
+            resource = Integer.parseInt(getConfig().getString("resource"));
+        }else{
+            resource = Integer.parseInt("107412");
+        }
+            new UpdateChecker(this, resource).getVersion(version -> {
+                if (!this.getDescription().getVersion().equalsIgnoreCase(version)) {
+                    updateAvailable = true;
+                    updateVersion = version;
                 } else {
-                    getLogger().severe("Error couldn't read config value updateAvailable, please check your config.yml file");
+                    updateAvailable = false;
+                    updateVersion = null;
                 }
+                if (updateAvailable) {
+                    if (getConfig().getString("updateAvailable") != null) {
+                        if (messagePlayer != null) {
+                            getLogger().info(getConfig().getString("updateAvailable").replace("{version}", updateVersion));
+                        }
+                    } else {
+                        getLogger().severe("Error couldn't read config value updateAvailable, please check your config.yml file");
+                    }
+                }
+            });
+
+            if (getConfig().getString("updateAvailablePlayer") != null) {
+                messagePlayer = getConfig().getString("updateAvailablePlayer").replace('&', ChatColor.COLOR_CHAR);
+            } else {
+                getLogger().severe("Error couldn't read config value updateAvailablePlayer, please check your config.yml file");
             }
-        });
     }
 
     @EventHandler
     public void onPlayerJoin (PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        if(updateAvailable && (player.hasPermission("KPManager.update") || player.isOp())) {
-            player.sendMessage(getConfig().getString("updateAvailablePlayer").replace('&',ChatColor.COLOR_CHAR));
-        } else {
-            getLogger().severe("Error couldn't read config value updateAvailablePlayer, please check your config.yml file");
+        if (updateAvailable && (player.hasPermission("KPManager.update") || player.isOp())) {
+            if (messagePlayer != null) {
+                player.sendMessage(messagePlayer.replace("{version}", updateVersion));
+            } else {
+                getLogger().severe("Error couldn't read config value updateAvailablePlayer, please check your config.yml file");
+            }
         }
     }
+
 
     @Override
     public void onDisable() {
