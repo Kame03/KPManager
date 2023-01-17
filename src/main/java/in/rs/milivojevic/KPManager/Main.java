@@ -24,9 +24,14 @@ public final class Main extends JavaPlugin implements Listener {
         Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
         TabCustomizer tabCustomizer = new TabCustomizer(scoreboard,this);
         getServer().getPluginManager().registerEvents(tabCustomizer, this);
+        getServer().getPluginManager().registerEvents(this, this);
 
         new UpdateChecker(this, 107412).getVersion(version -> {
-            updateAvailable = !(this.getDescription().getVersion().equals(version));
+            if (!this.getDescription().getVersion().equals(version)) {
+                updateAvailable = true;
+            } else {
+                updateAvailable = false;
+            }
             if(updateAvailable) {
                 if (getConfig().getString("updateAvailable") !=null) {
                     getLogger().info(getConfig().getString("updateAvailable"));
@@ -42,6 +47,8 @@ public final class Main extends JavaPlugin implements Listener {
         Player player = event.getPlayer();
         if(updateAvailable && (player.hasPermission("KPManager.update") || player.isOp())) {
             player.sendMessage(getConfig().getString("updateAvailablePlayer").replace('&',ChatColor.COLOR_CHAR));
+        } else {
+            getLogger().severe("Error couldn't read config value updateAvailablePlayer, please check your config.yml file");
         }
     }
 
