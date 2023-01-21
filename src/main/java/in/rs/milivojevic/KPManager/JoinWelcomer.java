@@ -1,11 +1,11 @@
 package in.rs.milivojevic.KPManager;
 
+import in.rs.milivojevic.KPManager.utils.ConfigManager;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,26 +18,26 @@ import java.util.Objects;
 
 public final class JoinWelcomer implements Listener  {
     private final OkHttpClient client = new OkHttpClient();
-    private final FileConfiguration config;
+    private final ConfigManager config;
     private String messagePlayer;
     private String messageEveryone;
     private String messageError;
     private final Main plugin;
-    public JoinWelcomer(Main plugin) {
+    public JoinWelcomer(Main plugin, ConfigManager configManager) {
+        this.config = configManager;
         this.plugin = plugin;
-        config = plugin.getConfig();
+        config.loadConfig();
 
-        if (config.getString("tabHeader") !=null) {
+        if (config.getString("messagePlayer") !=null) {
             messagePlayer = config.getString("messagePlayer").replace('&', ChatColor.COLOR_CHAR);
         }
-
-        if (config.getString("tabHeader") !=null) {
+        if (config.getString("messageEveryone") !=null) {
             messageEveryone = config.getString("messageEveryone").replace('&', ChatColor.COLOR_CHAR);
         }
-
-        if (config.getString("tabHeader") !=null) {
+        if (config.getString("messageError") !=null) {
             messageError = config.getString("messageError").replace('&', ChatColor.COLOR_CHAR);
         }
+
     }
 
     private String parseCountry(String xml) {

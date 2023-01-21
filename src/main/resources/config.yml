@@ -22,5 +22,8 @@ updateAvailable: 'There is a new update available version {version}.'
 # Update available message displayed to player
 updateAvailablePlayer: '&2[KPManager] &cThere is a new update available version {version}, please update the plugin.'
 
+# Display current version of the plugin in console
+currentVersion: '&2[KPManager] &cCurrent version of the plugin is {currentVersion}.'
+
 # Spigot resource ID for the plugin
 resource: '107412'

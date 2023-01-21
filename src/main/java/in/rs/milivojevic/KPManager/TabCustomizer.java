@@ -2,47 +2,47 @@ package in.rs.milivojevic.KPManager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.FileConfiguration;
+import in.rs.milivojevic.KPManager.utils.ConfigManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import org.bukkit.scheduler.BukkitRunnable;
 import in.rs.milivojevic.KPManager.utils.PingUtil;
 
+import java.util.logging.LogRecord;
+
 public class TabCustomizer implements Listener {
     private final Scoreboard scoreboard;
-    private final FileConfiguration config;
+    private final ConfigManager config;
+    private final Main plugin;
     private String tabHeader;
     private String tabFooter;
     private String pingInt;
+    private int task0Id;
+    private int taskId;
     private String valueping;
-    private final Main plugin;
-    private final boolean hasPingInt;
-    private final boolean hasTabHeaderFooter;
-    public TabCustomizer(Scoreboard scoreboard, Main plugin) {
+    public TabCustomizer(Scoreboard scoreboard, ConfigManager config, Main plugin) {
         this.scoreboard = scoreboard;
+        this.config = config;
         this.plugin = plugin;
-        config = plugin.getConfig();
 
-        hasPingInt = config.contains("pingInt") && config.getString("pingInt") != null;
-
-        hasTabHeaderFooter = config.contains("tabHeader") && config.getString("tabHeader") != null && config.contains("tabFooter") && config.getString("tabFooter") != null;
+        Bukkit.getLogger().info("TabCustomizer class loaded");
 
 
-
-        if (config.getString("tabHeader") !=null){
+        if (config.getString("tabHeader") != null) {
             tabHeader = config.getString("tabHeader").replace('&', ChatColor.COLOR_CHAR);
         }
 
-        if (config.getString("tabFooter") !=null) {
+        if (config.getString("tabFooter") != null) {
             tabFooter = config.getString("tabFooter").replace('&', ChatColor.COLOR_CHAR);
         }
 
-        if (config.getString("pingInt") !=null) {
+        if (config.getString("pingInt") != null) {
             pingInt = config.getString("pingInt").replace('&', ChatColor.COLOR_CHAR);
         }
     }
@@ -60,7 +60,7 @@ public class TabCustomizer implements Listener {
 
             @Override
             public void run() {
-                    valueping = "" + PingUtil.getPing(player);
+                valueping = "" + PingUtil.getPing(player);
             }
         };
         task0.runTaskTimer(plugin, 0, 20);
@@ -69,21 +69,30 @@ public class TabCustomizer implements Listener {
 
             @Override
             public void run() {
-                if (hasPingInt) {
+                if (config.getString("pingInt") != null) {
                     player.setPlayerListName(playerName + ChatColor.translateAlternateColorCodes('&', pingInt.replace("{ping}", valueping)));
                 }
-                if (hasTabHeaderFooter) {
-                    player.setPlayerListHeaderFooter(ChatColor.translateAlternateColorCodes('&', tabHeader.replace("{playerName}", player.getName())), ChatColor.translateAlternateColorCodes('&', tabFooter.replace("{playerName}", player.getName())));
+                if (config.getString("tabHeader") != null && config.getString("tabFooter") != null) {
+                    player.setPlayerListHeader(ChatColor.translateAlternateColorCodes('&', tabHeader.replace("{playerName}", playerName)));
+                    player.setPlayerListFooter(ChatColor.translateAlternateColorCodes('&', tabFooter.replace("{playerName}", playerName)));
                 }
             }
         };
         task.runTaskTimer(plugin, 0, 40);
     }
+
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         Team team = scoreboard.getTeam(player.getName());
         if (team != null) {
+            BukkitScheduler scheduler = Bukkit.getScheduler();
+            if (scheduler.isCurrentlyRunning(task0Id)) {
+                scheduler.cancelTask(task0Id);
+            }
+            if (scheduler.isCurrentlyRunning(taskId)) {
+                scheduler.cancelTask(taskId);
+            }
             team.removeEntry(player.getName());
         }
     }
