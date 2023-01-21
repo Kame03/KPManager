@@ -12,9 +12,6 @@ import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import org.bukkit.scheduler.BukkitRunnable;
-import in.rs.milivojevic.KPManager.utils.PingUtil;
-
-import java.util.logging.LogRecord;
 
 public class TabCustomizer implements Listener {
     private final Scoreboard scoreboard;
@@ -23,9 +20,7 @@ public class TabCustomizer implements Listener {
     private String tabHeader;
     private String tabFooter;
     private String pingInt;
-    private int task0Id;
     private int taskId;
-    private String valueping;
     public TabCustomizer(Scoreboard scoreboard, ConfigManager config, Main plugin) {
         this.scoreboard = scoreboard;
         this.config = config;
@@ -56,21 +51,12 @@ public class TabCustomizer implements Listener {
             team = scoreboard.registerNewTeam(playerName);
         }
         team.addEntry(playerName);
-        BukkitRunnable task0 = new BukkitRunnable() {
-
-            @Override
-            public void run() {
-                valueping = "" + PingUtil.getPing(player);
-            }
-        };
-        task0.runTaskTimer(plugin, 0, 20);
-
         BukkitRunnable task = new BukkitRunnable() {
 
             @Override
             public void run() {
                 if (config.getString("pingInt") != null) {
-                    player.setPlayerListName(playerName + ChatColor.translateAlternateColorCodes('&', pingInt.replace("{ping}", valueping)));
+                    player.setPlayerListName(playerName + ChatColor.translateAlternateColorCodes('&', pingInt.replace("{ping}", String.valueOf(player.getPing()))));
                 }
                 if (config.getString("tabHeader") != null && config.getString("tabFooter") != null) {
                     player.setPlayerListHeader(ChatColor.translateAlternateColorCodes('&', tabHeader.replace("{playerName}", playerName)));
@@ -87,9 +73,6 @@ public class TabCustomizer implements Listener {
         Team team = scoreboard.getTeam(player.getName());
         if (team != null) {
             BukkitScheduler scheduler = Bukkit.getScheduler();
-            if (scheduler.isCurrentlyRunning(task0Id)) {
-                scheduler.cancelTask(task0Id);
-            }
             if (scheduler.isCurrentlyRunning(taskId)) {
                 scheduler.cancelTask(taskId);
             }
