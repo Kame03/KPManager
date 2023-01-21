@@ -1,6 +1,6 @@
 name: KPManager
 api-version: 1.19
-version: v1.7
+version: v1.8
 main: in.rs.milivojevic.KPManager.Main
 author: Kamey_
 license: GPLv3
