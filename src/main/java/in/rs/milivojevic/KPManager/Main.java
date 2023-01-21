@@ -26,7 +26,7 @@ public final class Main extends JavaPlugin implements Listener {
         getLogger().info("Starting!");
         getLogger().warning("This plugin is made by Kamey_");
 
-        int pluginId = 1234;
+        int pluginId = 17490;
         Metrics metrics = new Metrics(this, pluginId);
 
         configManager = new ConfigManager(this);
