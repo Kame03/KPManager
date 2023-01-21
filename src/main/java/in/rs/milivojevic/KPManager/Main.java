@@ -1,12 +1,9 @@
 package in.rs.milivojevic.KPManager;
 
 import in.rs.milivojevic.KPManager.utils.ConfigManager;
-import in.rs.milivojevic.KPManager.TabCustomizer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+import in.rs.milivojevic.KPManager.utils.Metrics;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,11 +20,15 @@ public final class Main extends JavaPlugin implements Listener {
     private String updateVersion;
     private String currentVersion;
     private int resource;
-    private String language;
+
     @Override
     public void onEnable() {
         getLogger().info("Starting!");
         getLogger().warning("This plugin is made by Kamey_");
+
+        int pluginId = 1234;
+        Metrics metrics = new Metrics(this, pluginId);
+
         configManager = new ConfigManager(this);
         configManager.loadConfig();
 
