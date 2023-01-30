@@ -1,29 +1,29 @@
 # Mensaje de bienvenida al usuario cuando se una
-messagePlayer: '&2[KPManager] &aBienvenido &b{playerName} &aa mi servidor! &bDisfruta tu estadía!'
+messagePlayer: "&2[KPManager] &aBienvenido &b{playerName} &aa mi servidor! &bDisfruta tu estadía!"
 
 # Mensaje de bienvenida a todo el servidor cuando alguien se una
-messageEveryone: '&2[KPManager] &a{playerName} se unio desde &b{country}.'
+messageEveryone: "&2[KPManager] &a{playerName} se unio desde &b{country}."
 
 # Mensaje de error cuando si hay un problema con la IP API o los jugadores se unen desde el localhost
-messageError: '&2[KPManager] &cBienvenido, &6{playerName}, &cParece que te uniste desde el localhost o hay un error con la API ip-api.com. Por favor verifica tu conexión a internet o firewall.'
+messageError: "&2[KPManager] &cBienvenido, &6{playerName}, &cParece que te uniste desde el localhost o hay un error con la API ip-api.com. Por favor verifica tu conexión a internet o firewall."
 
 # Mensaje de Header del Tablist
-tabHeader: '&6Bienvenido {playerName}, diviertete en nuestro maravilloso servidor! &6'
+tabHeader: "&6Bienvenido {playerName}, diviertete en nuestro maravilloso servidor! &6"
 
 # Mensaje de Footer del Tablist
-tabFooter: '&6Disfrute su estadía, {playerName} &6'
+tabFooter: "&6Disfrute su estadía, {playerName} &6"
 
-# Formato del ping para el Tablist
-pingInt: '&7[{ping}]'
+# Formato de mensaje de ping para tablist
+PlayerTabName: "&f{playerName} &7[{ping}]"
 
 # Mensaje de actualización disponible para la consola
-updateAvailable: 'La versión {version} está disponible.'
+updateAvailable: "La versión {version} está disponible."
 
 # Mensaje de actualización disponible para el jugador
-updateAvailablePlayer: '&2[KPManager] &aLa versión {version} está disponible!, por favor actualiza el plugin.'
+updateAvailablePlayer: "&2[KPManager] &aLa versión {version} está disponible!, por favor actualiza el plugin."
 
 # Mensaje de la versión actual del plugin en la consola
-currentVersion: '&2[KPManager] &cLa versión actual del plugin es {currentVersion}.'
+currentVersion: "&2[KPManager] &cLa versión actual del plugin es {currentVersion}."
 
 # Id del plugin en Spigot
-resource: '107412'
+resource: "107412"

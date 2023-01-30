@@ -9,3 +9,4 @@ permissions:
   KPManager.update:
     description: Allows player to see update notifications
     default: op
+softdepend: [PlaceholderAPI]

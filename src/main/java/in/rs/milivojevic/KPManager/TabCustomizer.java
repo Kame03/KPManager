@@ -12,6 +12,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import org.bukkit.scheduler.BukkitRunnable;
+import me.clip.placeholderapi.PlaceholderAPI;
 
 public class TabCustomizer implements Listener {
     private final Scoreboard scoreboard;
@@ -20,6 +21,7 @@ public class TabCustomizer implements Listener {
     private String tabHeader;
     private String tabFooter;
     private String pingInt;
+    private String PlayerTabName;
     private int taskId;
     public TabCustomizer(Scoreboard scoreboard, ConfigManager config, Main plugin) {
         this.scoreboard = scoreboard;
@@ -37,8 +39,8 @@ public class TabCustomizer implements Listener {
             tabFooter = config.getString("tabFooter").replace('&', ChatColor.COLOR_CHAR);
         }
 
-        if (config.getString("pingInt") != null) {
-            pingInt = config.getString("pingInt").replace('&', ChatColor.COLOR_CHAR);
+        if (config.getString("PlayerTabName") != null) {
+            PlayerTabName = config.getString("PlayerTabName").replace('&', ChatColor.COLOR_CHAR);
         }
     }
 
@@ -55,12 +57,20 @@ public class TabCustomizer implements Listener {
 
             @Override
             public void run() {
-                if (config.getString("pingInt") != null) {
-                    player.setPlayerListName(playerName + ChatColor.translateAlternateColorCodes('&', pingInt.replace("{ping}", String.valueOf(player.getPing()))));
+                if (config.getString("PlayerTabName") != null) {
+                    String PlayerTabName = config.getString("PlayerTabName").replace('&', ChatColor.COLOR_CHAR);
+                    player.setPlayerListName(
+                            ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(player, PlayerTabName))
+                                    .replace("{ping}", String.valueOf(player.getPing()))
+                                    .replace("{playerName}", String.valueOf(player.getName()))
+                    );
                 }
+
                 if (config.getString("tabHeader") != null && config.getString("tabFooter") != null) {
-                    player.setPlayerListHeader(ChatColor.translateAlternateColorCodes('&', tabHeader.replace("{playerName}", playerName)));
-                    player.setPlayerListFooter(ChatColor.translateAlternateColorCodes('&', tabFooter.replace("{playerName}", playerName)));
+                    String tabHeader = config.getString("tabHeader").replace('&', ChatColor.COLOR_CHAR);
+                    String tabFooter = config.getString("tabFooter").replace('&', ChatColor.COLOR_CHAR);
+                    player.setPlayerListHeader(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(player, tabHeader).replace("{playerName}", String.valueOf(player.getName()))));
+                    player.setPlayerListFooter(ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(player, tabFooter).replace("{playerName}", String.valueOf(player.getName()))));
                 }
             }
         };

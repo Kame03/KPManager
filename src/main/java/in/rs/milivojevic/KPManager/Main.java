@@ -73,6 +73,11 @@ public final class Main extends JavaPlugin implements Listener {
         } else {
             getLogger().severe("Error couldn't read config value currentVersion, please check your config.yml file");
         }
+
+        if( Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")){
+            getLogger().warning("Utilizing PlaceholderAPI");
+            //Registering placeholder will be done here
+        }
     }
 
 
