@@ -27,12 +27,7 @@
 If you have any questions or issues with the plugin, please contact me on GitHub or through my website.
 
 ### License:
-KPManager is licensed under the GPLv3 License.
-Credits
-
-This plugin is made by Viktor Milivojević and is open-source.
-
-Note: If you are using this plugin for commercial purposes, please credit me.
+KPManager is licensed under the ACSL License.
 
 ### Contributors:
 - [Ruki X Music](https://www.youtube.com/@RukiXMusic): Helped me with icon color pattern and outlines!
